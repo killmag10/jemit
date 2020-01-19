@@ -1,0 +1,50 @@
+{
+  "name": "jemit",
+  "version": "0.1.0",
+  "description": "A JSON Object event stream for nodejs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@git.dietrich-hosting.de/personal/lars.dietrich/jemit"
+  },
+  "author": {
+    "name": "Lars Dietrich",
+    "email": "lars@dietrich-hosting.de"
+  },
+  "license": "LGPL-3.0",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0",
+    "ink-docstrap": "^1.3.2",
+    "jsdoc": "^3.6.3",
+    "mocha": "^7.0.0",
+    "nyc": "^15.0.0"
+  },
+  "dependencies": {},
+  "keywords": [
+    "jemit",
+    "json",
+    "stream",
+    "object"
+  ],
+  "nyc": {
+    "report-dir": "./docs/html/coverage",
+    "check-coverage": false,
+    "per-file": true,
+    "reporter": [
+      "html",
+      "text"
+    ],
+    "exclude": [
+      "docs/*",
+      "tests/*",
+      "public/*"
+    ],
+    "cache": false,
+    "all": true
+  }
+}

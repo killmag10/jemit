@@ -1,0 +1,11 @@
+{
+    "templates": {
+        "systemName"            : "Masterdata Service",
+        "includeDate"           : true,
+        "collapseSymbols"       : false,
+        "navType"               : "inline",
+        "linenums"              : true,
+        "syntaxTheme"           : "simplex",
+        "sort"                  : true
+    }
+}
