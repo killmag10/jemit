@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@git.dietrich-hosting.de/personal/lars.dietrich/jemit"
+    "url": "git://github.com/killmag10/jemit"
   },
   "author": {
     "name": "Lars Dietrich",
@@ -46,9 +46,5 @@
     ],
     "cache": false,
     "all": true
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/killmag10/jemit"
   }
 }
