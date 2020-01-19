@@ -128,11 +128,12 @@ describe('lib/input', () => {
         });
 
         (async () => {
-            for (var i = 0; i < amount; i++) {
+            for (var i = 0; i < amount -1; i++) {
                  results.push(output.emit('test', {i: i}));
             }
             streamOutput.uncork();
-            output.end();
+            results.push(await output.emit('test', {i: i}));
+            await output.end();
         })()
     });
 });

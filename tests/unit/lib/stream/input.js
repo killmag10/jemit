@@ -1,9 +1,9 @@
 const expect = require('chai').expect;
-
 const stream = require('stream');
 
 describe('lib/stream/input', () => {
     const StreamInput = require(testing.path.root + '/lib/stream/input');
+    const TransformError = require(testing.path.root + '/lib/error/transform');
 
     it('read', (done) => {
         let buffer = [];
@@ -54,8 +54,10 @@ describe('lib/stream/input', () => {
         });
         streamInput.on('finish', () => {
             try {
-                expect(bufferError[0]).to.be.instanceof(SyntaxError);
-                expect(bufferError[1]).to.be.instanceof(SyntaxError);
+                expect(bufferError[0]).to.be.instanceof(TransformError);
+                expect(bufferError[0].errors).to.have.lengthOf(1);
+                expect(bufferError[0].errors[0]).to.be.instanceof(SyntaxError);
+                expect(bufferError[1]).to.be.instanceof(TransformError);
                 expect(bufferError).to.have.lengthOf(2);
 
                 expect(bufferData[0]).to.be.deep.equal([
