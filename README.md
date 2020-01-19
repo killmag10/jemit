@@ -2,9 +2,10 @@
 
 A user friendly JSON stream module with event support.
 
-[![Travis](https://img.shields.io/travis/killmag10/jemit/master.svg)](https://travis-ci.org/killmag10/jemit)
+[![Travis](https://img.shields.io/travis/com/killmag10/jemit/master)](https://travis-ci.com/killmag10/jemit)
 [![npm](https://img.shields.io/npm/dm/jemit.svg)](https://www.npmjs.com/package/jemit)
 [![npm](https://img.shields.io/npm/v/jemit.svg)](https://www.npmjs.com/package/jemit)
+
 
 ## Usage
 
