@@ -19,7 +19,11 @@ PATH_DOCS := docs
 	test-coverage \
 	test-coverage-open \
 	$(TEST_FILES) \
-	lint
+	lint \
+	api-doc \
+	api-doc-open \
+	clean \
+	clean-html
 
 install:
 	# Install node modules.
@@ -30,30 +34,27 @@ uninstall:
 	@$(TEST) ! -d node_modules/ || $(RM) -r node_modules/
 
 test:
-	$(NPX) mocha \
-		--exit --require tests/boot.js \
-		--recursive $(TEST_DIRS)
+	$(NPX) mocha --recursive $(TEST_DIRS)
 
 test-coverage:
-	$(NPX) nyc \
-		$(NPX) mocha \
-			--exit --require tests/boot.js \
-			--recursive $(TEST_DIRS)
+	$(NPX) nyc $(MAKE) test
 
 test-coverage-open:
 	xdg-open $(PATH_DOCS)/html/coverage/index.html
 
 $(TEST_FILES):
 	$(NPX) mocha \
-		--exit --require tests/boot.js \
 		$@
 
 lint:
 	$(NPX) eslint .
 
+lint-fix:
+	$(NPX) eslint --fix .
+
 api-doc:
 	# Create html docs under docs/html/api
-	npx jsdoc \
+	$(NPX) jsdoc \
 		--template $(PATH_NODE_MODULES)/ink-docstrap/template \
 		--destination $(PATH_DOCS)/html/api \
 		--recurse \

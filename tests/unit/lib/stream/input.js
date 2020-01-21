@@ -1,3 +1,5 @@
+'use strict';
+
 const expect = require('chai').expect;
 const stream = require('stream');
 
@@ -6,8 +8,8 @@ describe('lib/stream/input', () => {
     const TransformError = require(testing.path.root + '/lib/error/transform');
 
     it('read', (done) => {
-        let buffer = [];
-        let streamInput = new StreamInput();
+        const buffer = [];
+        const streamInput = new StreamInput();
         streamInput.on('data', (data) => {
             buffer.push(data);
         });
@@ -15,18 +17,18 @@ describe('lib/stream/input', () => {
             try {
                 expect(buffer[0]).to.be.deep.equal([
                     'test',
-                    {i: "1"}
+                    {i: '1'},
                 ]);
                 expect(buffer[1]).to.be.deep.equal([
                     'test',
-                    {i: "2"}
+                    {i: '2'},
                 ]);
                 expect(buffer[2]).to.be.deep.equal([
                     'test',
-                    {i: 3}
+                    {i: 3},
                 ]);
                 expect(buffer[3]).to.be.deep.equal([
-                    'empty'
+                    'empty',
                 ]);
                 expect(buffer).to.have.lengthOf(4);
 
@@ -34,7 +36,7 @@ describe('lib/stream/input', () => {
             } catch (e) {
                 done(e);
             }
-        })
+        });
         streamInput.write('["test",{"i":"1"}]\n["');
         streamInput.write('test",');
         streamInput.write('{"i":"2"}]\n["test",{"i":3}]\n["empty"]\n');
@@ -43,9 +45,9 @@ describe('lib/stream/input', () => {
     });
 
     it('parse error', (done) => {
-        let bufferData = [];
-        let bufferError = [];
-        let streamInput = new StreamInput();
+        const bufferData = [];
+        const bufferError = [];
+        const streamInput = new StreamInput();
         streamInput.on('error', (e) => {
             bufferError.push(e);
         });
@@ -62,14 +64,14 @@ describe('lib/stream/input', () => {
 
                 expect(bufferData[0]).to.be.deep.equal([
                     'test',
-                    {i: "1"}
+                    {i: '1'},
                 ]);
                 expect(bufferData[1]).to.be.deep.equal([
                     'test',
-                    {i: "2"}
+                    {i: '2'},
                 ]);
                 expect(bufferData[2]).to.be.deep.equal([
-                    'empty'
+                    'empty',
                 ]);
                 expect(bufferData).to.have.lengthOf(3);
 
@@ -77,7 +79,7 @@ describe('lib/stream/input', () => {
             } catch (e) {
                 done(e);
             }
-        })
+        });
         streamInput.write('["test",{"i":"1"}]\nWHAT?\n["test",');
         streamInput.write('{"i":"2"}]\ntest",{"i":3}]\n["empty"]\n');
         streamInput.end();
@@ -85,10 +87,10 @@ describe('lib/stream/input', () => {
     });
 
     it('parse maxParseBufferSize', (done) => {
-        let bufferData = [];
-        let bufferError = [];
-        let streamInput = new StreamInput({
-            maxParseBufferSize: 9
+        const bufferData = [];
+        const bufferError = [];
+        const streamInput = new StreamInput({
+            maxParseBufferSize: 9,
         });
         streamInput.on('error', (e) => {
             bufferError.push(e);
@@ -102,7 +104,7 @@ describe('lib/stream/input', () => {
                 expect(bufferError).to.have.lengthOf(1);
 
                 expect(bufferData[0]).to.be.deep.equal([
-                    'test'
+                    'test',
                 ]);
                 expect(bufferData).to.have.lengthOf(1);
 
@@ -110,7 +112,7 @@ describe('lib/stream/input', () => {
             } catch (e) {
                 done(e);
             }
-        })
+        });
         streamInput.write('["test"]\n');
         streamInput.write('["test-');
         streamInput.write('long"]\n');

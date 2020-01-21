@@ -1,12 +1,10 @@
 'use strict';
 
-var app = null;
-
 const path = require('path');
 
-global.testing =  {
+global.testing = {
     path: {
-        root: path.dirname(__dirname)
+        root: path.dirname(__dirname),
     },
-    helpers: {}
+    helpers: {},
 };
