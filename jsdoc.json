@@ -1,6 +1,6 @@
 {
     "templates": {
-        "systemName"            : "Masterdata Service",
+        "systemName"            : "jemit",
         "includeDate"           : true,
         "collapseSymbols"       : false,
         "navType"               : "inline",
